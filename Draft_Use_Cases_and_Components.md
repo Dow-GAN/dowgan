@@ -1,4 +1,4 @@
-DowGAN Project: Draft of Use Cases and Component Specification
+**DowGAN Project: Draft of Use Cases and Component Specification**
 CHEM 545/546 
 Daniel Kuo, Emily Miura-Stempel, Emily Nishiwaki, Arty Timchenko
 
