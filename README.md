@@ -1,9 +1,4 @@
 # dowgan
 
-the quick brown fox jumped over the lazy dog.
+This is the dowgan project directory
 
-ems-branch updates AND ems-fork changes~
-
-
-whast made these changes
-KEKW
