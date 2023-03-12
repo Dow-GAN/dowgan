@@ -44,6 +44,9 @@ class Generator(nn.Module):
 
 def training_loop(generator, discriminator, num_epochs, train_loader, batch_size, lr, df_dim):
     '''This is where the generator and discrimator are trained'''
+    #Define lists of losses
+    loss_disciminator_list = []
+    loss_generator_list = []
     # Define Loss function
     loss_function = nn.BCELoss()
     # Define Optimizer for generator and discriminator
@@ -68,6 +71,7 @@ def training_loop(generator, discriminator, num_epochs, train_loader, batch_size
             loss_discriminator = loss_function(output_discriminator, all_samples_labels)
             loss_discriminator.backward()
             optimizer_discriminator.step()
+            loss_disciminator_list.append(loss_discriminator)
         # Data for training the generator
             # Generate Noise
             latent_space_samples = torch.randn((batch_size, df_dim))
@@ -80,7 +84,18 @@ def training_loop(generator, discriminator, num_epochs, train_loader, batch_size
             loss_generator = loss_function(output_discriminator_generated, real_samples_labels)
             loss_generator.backward()
             optimizer_generator.step()
+            loss_generator_list.append(loss_generator)
         # Show loss
             if epoch % 10 == 0 and n == batch_size - 1:
                 print(f"Epoch: {epoch} Loss D.: {loss_discriminator}")
                 print(f"Epoch: {epoch} Loss G.: {loss_generator}")
+            else:
+                pass
+        #Saving all loss values to lists
+        #loss_disciminator_list.append(loss_discriminator)
+        #loss_generator_list.append(loss_generator)
+    #Printing loss array lengths
+    print(f'length loss dim: {len(loss_disciminator_list)}')
+    print(f'length loss gen: {len(loss_generator_list)}')
+
+    return loss_disciminator_list, loss_generator_list
