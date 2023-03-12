@@ -22,7 +22,8 @@ path = os.path.join(folder_name, file_name)
 #Load CSV into Dataframe
 df = pd.read_csv(path,sep=',')
 df = df.drop(columns = ['Date'])
-
+# Get column names
+names = Util.get_column_names(df)
 # Set random state
 torch.manual_seed(111)
 # Select # of data points from data set to train GAN
@@ -60,7 +61,13 @@ generated_samples = generated_samples.detach()
 
 # Takes the generated data and turns it into a pandas DataFrame
 df_gen=pd.DataFrame(generated_samples)
+df_gen = df_gen.set_axis(names, axis=1, inplace=False)
 print(df_gen)
     
-
+# Plot the generated data
+fig, axes = plt.subplots(figsize=(15, 6))
+sns.scatterplot(data=df_gen,x=df_gen[names[1]], y=df_gen[names[0]], color='g')
+axes.set_title('Generated Data')
+axes.set_xlabel("Time")
+plt.show()
 
