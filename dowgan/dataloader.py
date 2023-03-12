@@ -1,16 +1,13 @@
 ''' Load csv data, spoecify parameters and train GAN Model'''
-import numpy as np
 import pandas as pd
 import torch
-from torch import nn
+import matplotlib.pyplot as plt
+import seaborn as sns
 import Util
 
 import tsGAN
 import os
 
-import matplotlib.pyplot as plt
-
-import seaborn as sns
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
@@ -39,12 +36,12 @@ drop_out = 0.2
 # Define batch size for the data loader
 batch_size = 25
 
-# Create arrays and then turn into tensors for the train loader 
+# Create arrays and then turn into tensors for the train loader
 arrays = Util.create_arrays(df[:num_data],num_data)
 train_set = Util.create_tensors(arrays)
 train_loader = torch.utils.data.DataLoader(train_set, batch_size=batch_size)
 
-# Define generator and discriminator 
+# Define generator and discriminator
 generator = tsGAN.Generator(df_dim,batch_size,drop_out)
 discriminator =  tsGAN.Discriminator(df_dim,batch_size,drop_out)
 
@@ -60,7 +57,7 @@ generated_samples = generated_samples.detach()
 df_gen=pd.DataFrame(generated_samples)
 df_gen = df_gen.set_axis(names, axis=1, inplace=False)
 print(df_gen)
-    
+
 # Plot the generated data
 fig, axes = plt.subplots(figsize=(15, 6))
 sns.scatterplot(data=df_gen,x=df_gen[names[1]], y=df_gen[names[0]], color='g')

@@ -24,6 +24,7 @@ class Discriminator(nn.Module):
     def forward(self, x):
         output = self.model(x)
         return output
+
 class Generator(nn.Module):
     ''' Generates synthetic data'''
     # Consists of 3 sequential linear layers, standerdized by dropout
@@ -40,9 +41,10 @@ class Generator(nn.Module):
     def forward(self, x):
         output = self.model(x)
         return output
+
 def training_loop(generator, discriminator, num_epochs, train_loader, batch_size, lr, df_dim):
     '''This is where the generator and discrimator are trained'''
-    # Define Loss function 
+    # Define Loss function
     loss_function = nn.BCELoss()
     # Define Optimizer for generator and discriminator
     optimizer_discriminator = torch.optim.Adam(discriminator.parameters(), lr=lr)
