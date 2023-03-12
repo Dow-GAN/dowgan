@@ -4,14 +4,13 @@ import pandas as pd
 import torch
 import matplotlib.pyplot as plt
 import seaborn as sns
-import Util
-
-import tsGAN
 import os
-
 import warnings
-warnings.simplefilter(action='ignore', category=FutureWarning)
 
+import Util
+import tsGAN
+
+warnings.simplefilter(action='ignore', category=FutureWarning)
 sns.set_style('white')
 sns.set_context('poster')
 
@@ -50,7 +49,8 @@ generator = tsGAN.Generator(df_dim,batch_size,drop_out)
 discriminator =  tsGAN.Discriminator(df_dim,batch_size,drop_out)
 
 # Training the model
-dim_list, gen_list = tsGAN.training_loop(generator, discriminator, num_epochs, train_loader, batch_size,lr,df_dim)
+dim_list, gen_list = tsGAN.training_loop(generator, discriminator, num_epochs, train_loader,
+                                         batch_size,lr,df_dim)
 
 # After training the Gen, generates data as tensors
 latent_space_samples = torch.randn((num_data), df_dim)
@@ -95,8 +95,10 @@ loss = pd.concat([dim_list_new,gen_list_new],axis=1)
 #Plot the loss of the discriminator and generator
 fig, ax = plt.subplots()
 
-sns.lineplot(data=loss, x=np.arange(0,2900),y='dim_loss',sort=False, label = 'discriminator',color='#268785')
-sns.lineplot(data=loss, x=np.arange(0,2900),y='gen_loss',sort=False, label = 'generator',color='#4A225D')
+sns.lineplot(data=loss, x=np.arange(0,2900),y='dim_loss',sort=False,
+             label = 'discriminator',color='#268785')
+sns.lineplot(data=loss, x=np.arange(0,2900),y='gen_loss',sort=False,
+             label = 'generator',color='#4A225D')
 
 ax.legend(fontsize = 16)
 ax.set_ylabel('Loss')
