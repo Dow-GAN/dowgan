@@ -1,8 +1,8 @@
-# dowgan
+# Project DowGAN
 
 # Exploring Generative Adversarial Netowkrs for Data Augmentation
 
-Simple overview of use/purpose.
+This project uses generative adversarial networks for data generation for time-series data.
 
 ## Description
 
@@ -39,9 +39,9 @@ command to run if program contains helper info
 
 Contributors names and contact info
 
-Daniel Kuo - [@Whast1225](https://github.com/Whast1225)
-Emily Miura-Stempel - [@DomPizzie](https://twitter.com/dompizzie)
-Emily Nishiwaki - [@DomPizzie](https://twitter.com/dompizzie)
+Daniel Kuo - [@Whast1225](https://github.com/Whast1225)  
+Emily Miura-Stempel - [@DomPizzie](https://twitter.com/dompizzie)  
+Emily Nishiwaki - [@DomPizzie](https://twitter.com/dompizzie)  
 Arty Timchenko - [@DomPizzie](https://twitter.com/dompizzie)
 
 ## Version History
