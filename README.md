@@ -1,32 +1,42 @@
 # Project DowGAN
 
-# Exploring Generative Adversarial Netowkrs for Data Augmentation
+# Exploring Generative Adversarial Networks for Data Augmentation
 
 This project uses generative adversarial networks for data generation for time-series data.
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+Collecting large amounts and high resolution of data in industrial fields is often costly and time intensive. General adversarial networks (GANs) are known for augmenting images. We are exploring the potential for GANs to augment time-series data. 
+
+This project is a collaboration between the University of Washington and Dow Chemical.
 
 ## Getting Started
 
+### Installing/Modifications
+
+* Clone github repo into home directory
+* Create environment by executing at the command line:
+```
+conda env create -n dowgan-env --file environment.yml
+```
+* To activate environment: `conda activate dowgan-env`
+* To deactivate environment: `conda deactivate dowgan-env`
+* To see the list of all conda environments: `conda info --envs`
+
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* To create the environment for this github repo
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+* Clone github repo into home directory
+* Navigate to '../dowgan/dowgan' folder
+* To run GAN on default Hungary Chicken Pox Data, execute at the command line:
 ```
-code blocks for commands
+python3 dataloader.py
 ```
+* Modify parameters and preferences for GAN model by editing `dataloader.py` file parameters 
+
 
 ## Help
 
@@ -40,14 +50,14 @@ command to run if program contains helper info
 Contributors names and contact info
 
 Daniel Kuo - [@Whast1225](https://github.com/Whast1225)  
-Emily Miura-Stempel - [@DomPizzie](https://twitter.com/dompizzie)  
-Emily Nishiwaki - [@DomPizzie](https://twitter.com/dompizzie)  
-Arty Timchenko - [@DomPizzie](https://twitter.com/dompizzie)
+Emily Miura-Stempel - [@emimiura](https://github.com/emimiura)  
+Emily Nishiwaki - [@emynish](https://github.com/emynish)  
+Arty Timchenko - [@atimch](https://github.com/atimch)
 
 ## Version History
 
-* 0.1
-    * Initial Release
+* 1.0
+    * Initial Release - Winter Quarter 2023 CHEM E 545/546
 
 ## License
 
