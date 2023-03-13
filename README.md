@@ -23,9 +23,9 @@ conda env create -f environment.yml
 * To deactivate environment: `conda deactivate dowgan`
 * To see the list of all conda environments: `conda info --envs`
 * To update the environment: 
-    Make any changes required to environment.yml file
-    Then run: `conda env update --file environment.yml --prune`
-    Then make sure to `conda activate dowgan` again to successfully update environment.
+    * Make any changes required to environment.yml file
+    * Then run: `conda env update --file environment.yml --prune`
+    * Then make sure to `conda activate dowgan` again to successfully update environment.
 
 ### Executing program
 
