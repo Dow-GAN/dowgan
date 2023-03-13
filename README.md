@@ -1,6 +1,6 @@
 # Project DowGAN
 
-# Exploring Generative Adversarial Netowkrs for Data Augmentation
+# Exploring Generative Adversarial Networks for Data Augmentation
 
 This project uses generative adversarial networks for data generation for time-series data.
 
@@ -15,17 +15,18 @@ An in-depth paragraph about your project and overview of use.
 * Describe any prerequisites, libraries, OS version, etc., needed before installing program.
 * ex. Windows 10
 
-### Installing
+### Installing/Modifications
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Clone github repo into home directory
+* Modify parameters and preferences for GAN model by editing `dataloader.py` file parameters
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+* Clone github repo into home directory
+* Navigate to '../dowgan/dowgan' folder
+* To run GAN on default Hungary Chicken Pox Data, execute at the command line:
 ```
-code blocks for commands
+python3 dataloader.py
 ```
 
 ## Help
@@ -40,14 +41,14 @@ command to run if program contains helper info
 Contributors names and contact info
 
 Daniel Kuo - [@Whast1225](https://github.com/Whast1225)  
-Emily Miura-Stempel - [@DomPizzie](https://twitter.com/dompizzie)  
-Emily Nishiwaki - [@DomPizzie](https://twitter.com/dompizzie)  
-Arty Timchenko - [@DomPizzie](https://twitter.com/dompizzie)
+Emily Miura-Stempel - [@emimiura](https://github.com/emimiura)  
+Emily Nishiwaki - [@emynish](https://github.com/emynish)  
+Arty Timchenko - [@atimch](https://github.com/atimch)
 
 ## Version History
 
-* 0.1
-    * Initial Release
+* 1.0
+    * Initial Release - Winter Quarter 2023 CHEM E 545/546
 
 ## License
 
