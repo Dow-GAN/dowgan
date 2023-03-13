@@ -12,15 +12,20 @@ This project is a collaboration between the University of Washington and Dow Che
 
 ## Getting Started
 
-### Dependencies
-
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
 ### Installing/Modifications
 
 * Clone github repo into home directory
-* Modify parameters and preferences for GAN model by editing `dataloader.py` file parameters
+* Create environment by executing at the command line:
+```
+conda env create -n dowgan-env --file environment.yml
+```
+* To activate environment: `conda activate dowgan-env`
+* To deactivate environment: `conda deactivate dowgan-env`
+* To see the list of all conda environments: `conda info --envs`
+
+### Dependencies
+
+* To create the environment for this github repo
 
 ### Executing program
 
@@ -30,6 +35,8 @@ This project is a collaboration between the University of Washington and Dow Che
 ```
 python3 dataloader.py
 ```
+* Modify parameters and preferences for GAN model by editing `dataloader.py` file parameters 
+
 
 ## Help
 
