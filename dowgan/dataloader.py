@@ -31,9 +31,9 @@ num_data = 522
 # Specify dimensionality of dataframe
 df_dim = len(df.columns)
 # Learning rate
-lr = 0.002
+lr = 0.005
 # Number of epoch
-num_epochs = 100
+num_epochs = 500
 # Discriminator dropout for data standardization
 drop_out = 0.2
 # Define batch size for the data loader
@@ -95,15 +95,14 @@ loss = pd.concat([dim_list_new,gen_list_new],axis=1)
 #Plot the loss of the discriminator and generator
 fig, ax = plt.subplots()
 
-sns.lineplot(data=loss, x=np.arange(0,2900),y='dim_loss',sort=False,
+sns.lineplot(data=loss, x=range(0, len(loss)),y='dim_loss',sort=False,
              label = 'discriminator',color='#268785')
-sns.lineplot(data=loss, x=np.arange(0,2900),y='gen_loss',sort=False,
+sns.lineplot(data=loss, x=range(0, len(loss)),y='gen_loss',sort=False,
              label = 'generator',color='#4A225D')
 
 ax.legend(fontsize = 16)
 ax.set_ylabel('Loss')
 ax.set_xlabel('Step')
-ax.set_ylim(-0.7,9)
 
 plt.show()
 
