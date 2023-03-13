@@ -12,38 +12,34 @@ This project is a collaboration between the University of Washington and Dow Che
 
 ## Getting Started
 
-### Installing/Modifications
+### Installing & Dependencies
 
 * Clone github repo into home directory
 * Create environment by executing at the command line:
 ```
-conda env create -n dowgan-env --file environment.yml
+conda env create -f environment.yml
 ```
-* To activate environment: `conda activate dowgan-env`
-* To deactivate environment: `conda deactivate dowgan-env`
+* To activate environment: `conda activate dowgan`
+* To deactivate environment: `conda deactivate dowgan`
 * To see the list of all conda environments: `conda info --envs`
-
-### Dependencies
-
-* To create the environment for this github repo
+* To update the environment: 
+    Make any changes required to environment.yml file
+    Then run: `conda env update --file environment.yml --prune`
+    Then make sure to `conda activate dowgan` again to successfully update environment.
 
 ### Executing program
 
-* Clone github repo into home directory
-* Navigate to '../dowgan/dowgan' folder
-* To run GAN on default Hungary Chicken Pox Data, execute at the command line:
+* First clone this github repo and activate the dowgan environment
+* To run GAN on default 'Hungary Chicken Pox' Data, execute at the command line:
 ```
 python3 dataloader.py
 ```
-* Modify parameters and preferences for GAN model by editing `dataloader.py` file parameters 
+* Modify parameters and preferences for GAN model by editing `dataloader.py` script file parameters 
 
 
 ## Help
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+Contact authors listed below for help.
 
 ## Authors
 
