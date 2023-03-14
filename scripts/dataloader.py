@@ -6,7 +6,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 import warnings
-
+import getpass
+import sys
+sys.path.insert(0, f'/home/{getpass.getuser()}/dowgan/dowgan')
 import Util
 import tsGAN
 
@@ -18,7 +20,7 @@ sns.set_context('poster')
 # CSV path
 folder_name = "data"
 file_name = "hungary_chickenpox.csv"
-path = os.path.join(folder_name, file_name)
+path = os.path.join('../', folder_name, file_name)
 #Load CSV into Dataframe
 df = pd.read_csv(path,sep=',')
 df = df.drop(columns = ['Date'])
