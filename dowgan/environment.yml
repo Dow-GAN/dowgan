@@ -12,3 +12,4 @@ dependencies:
   - python=3.8
   - pytorch=1.13.1
   - seaborn=0.12.2
+  - cudatoolkit=11.6
