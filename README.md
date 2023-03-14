@@ -8,6 +8,8 @@ This project uses generative adversarial networks for data generation for time-s
 
 Collecting large amounts and high resolution of data in industrial fields is often costly and time intensive. General adversarial networks (GANs) are known for augmenting images. We are exploring the potential for GANs to augment time-series data. 
 
+This currently only works on the `hungary_chickenpox.csv` data
+
 This project is a collaboration between the University of Washington and Dow Chemical.
 
 ## Getting Started
