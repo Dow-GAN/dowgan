@@ -15,16 +15,19 @@ This project is a collaboration between the University of Washington and Dow Che
 ### Installing & Dependencies
 
 * Clone github repo into home directory
-* Create environment by executing at the command line:
+* Create environment by executing at the command line for mac or windows/pc respectively:
 ```
-conda env create -f environment.yml
+conda env create -f environment_mac.yml
+```
+```
+conda env create -f environment_windows.yml
 ```
 * To activate environment: `conda activate dowgan`
 * To deactivate environment: `conda deactivate dowgan`
 * To see the list of all conda environments: `conda info --envs`
 * To update the environment: 
     * Make any changes required to environment.yml file
-    * Then run: `conda env update --file environment.yml --prune`
+    * Then run: `conda env update --file environment_mac/windows.yml --prune`
     * Then make sure to `conda activate dowgan` again to successfully update environment.
 
 ### Executing program
