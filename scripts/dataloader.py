@@ -1,4 +1,4 @@
-''' Load csv data, spoecify parameters and train GAN Model'''
+''' Load csv data, specify parameters and train GAN Model'''
 import numpy as np
 import pandas as pd
 import torch
@@ -6,9 +6,17 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 import warnings
+
+import platform
 import getpass
 import sys
-sys.path.insert(0, f'/home/{getpass.getuser()}/dowgan/dowgan')
+
+# specifying a different path for mac users
+if platform.system() == 'Darwin':
+    sys.path.insert(0, f'/Users/{getpass.getuser()}/dowgan/dowgan')
+else:
+    sys.path.insert(0, f'/Home/{getpass.getuser()}/dowgan/dowgan')
+
 import Util
 import tsGAN
 

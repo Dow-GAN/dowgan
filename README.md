@@ -17,6 +17,7 @@ This project is a collaboration between the University of Washington and Dow Che
 ### Installing & Dependencies
 
 * Clone github repo into home directory
+* Navigate into the dowgan repo from your Home directory using `cd dowgan`
 * Create environment by executing at the command line for mac or windows/pc respectively:
 ```
 conda env create -f environment_mac.yml
@@ -34,8 +35,9 @@ conda env create -f environment_windows.yml
 
 ### Executing program
 
-* First clone this github repo and activate the dowgan environment
-* To run GAN on default 'Hungary Chicken Pox' Data, execute at the command line:
+* First follow the steps above in Installing & Dependencies
+* Once the dowgan environment is activated, navigate into the scripts folder `cd scripts`
+* To run GAN script called 'dataloder.py' on the default 'Hungary Chicken Pox' Data, execute at the command line:
 ```
 python3 dataloader.py
 ```
