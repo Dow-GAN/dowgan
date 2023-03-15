@@ -1,15 +1,18 @@
+# TO RUN SCRIPT TYPE INTO TERMINAL:
+# python3 dataloader.py
+
 ''' Load csv data, specify parameters and train GAN Model'''
+import os
+import warnings
+import platform
+import getpass
+import sys
+
 import numpy as np
 import pandas as pd
 import torch
 import matplotlib.pyplot as plt
 import seaborn as sns
-import os
-import warnings
-
-import platform
-import getpass
-import sys
 
 # specifying a different path for mac users
 if platform.system() == 'Darwin':
@@ -63,8 +66,10 @@ generator = tsGAN.Generator(df_dim,batch_size,drop_out)
 discriminator =  tsGAN.Discriminator(df_dim,batch_size,drop_out)
 
 # Training the model
+print('Initiating training.')
 dim_list, gen_list = tsGAN.training_loop(generator, discriminator, num_epochs, train_loader,
                                          batch_size,lr,df_dim)
+print('Training complete.')
 
 # After training the Gen, generates data as tensors
 latent_space_samples = torch.randn((num_data), df_dim)
@@ -74,6 +79,7 @@ generated_samples = generated_samples.detach()
 # Takes the generated data and turns it into a pandas DataFrame
 df_gen=pd.DataFrame(generated_samples)
 df_gen = df_gen.set_axis(names, axis=1, inplace=False)
+print('Generated data:')
 print(df_gen)
 
 # Plot the generated data
@@ -85,7 +91,7 @@ axes.set_xlabel("Weeks")
 #sns.scatterplot(data=df_gen,x=df_gen[names[1]], y=df_gen[names[0]], color='g')
 #axes.set_title('Generated Data')
 #axes.set_xlabel("Time")
-
+print('Outputting figure for generated data of BUDAPEST.')
 plt.show()
 
 #Converting the losses from tensors into a DataFrame
@@ -115,10 +121,9 @@ sns.lineplot(data=loss, x=range(0, len(loss)),y='gen_loss',sort=False,
              label = 'generator',color='#4A225D')
 
 ax.legend(fontsize = 16)
+ax.set_title('Loss of discriminator and generator')
 ax.set_ylabel('Loss')
 ax.set_xlabel('Step')
 
+print('Outputting loss figure for model.')
 plt.show()
-
-# To run
-# python3 dataloader.py
