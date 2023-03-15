@@ -14,8 +14,12 @@ import sys
 # specifying a different path for mac users
 if platform.system() == 'Darwin':
     sys.path.insert(0, f'/Users/{getpass.getuser()}/dowgan/dowgan')
-else:
+elif platform.system() == 'Linux':
+    sys.path.insert(0, f'/home/{getpass.getuser()}/dowgan/dowgan')
+elif platform.system() == 'Windows':
     sys.path.insert(0, f'/Home/{getpass.getuser()}/dowgan/dowgan')
+else:
+    print('Need modified file path to import Util.')
 
 import Util
 import tsGAN
