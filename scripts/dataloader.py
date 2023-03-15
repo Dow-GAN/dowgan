@@ -125,5 +125,5 @@ ax.set_title('Loss of discriminator and generator')
 ax.set_ylabel('Loss')
 ax.set_xlabel('Step')
 
-print('Outputting loss figure for model.')
+print('Outputting figure for model loss.')
 plt.show()
