@@ -66,7 +66,7 @@ Data pipeline: Input data / data fed in real time etc (extract transform load, E
 * Reading input data into pandas dataframe
 * Making sure dataframe columns include ‘Time’ 
 
-Clean Data: (could be part of pipeline)
+Data preprocessing:
 * Analyze file for NaN values, missing information, empty files
 * Making sure the time values are all uniform (i.e. data input is always converted to Time in mins)
 * Train/Test data
