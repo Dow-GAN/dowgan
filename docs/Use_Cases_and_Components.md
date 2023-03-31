@@ -1,8 +1,6 @@
 # DowGAN Project: Use Cases and Component Specification 
 
-CHEM 545/546  
 Daniel Kuo, Emily Miura-Stempel, Emily Nishiwaki, Arty Timchenko
-
 
 ## Use Cases  
 ### Use Case 1: Using GAN model to generate augmented data  
@@ -47,7 +45,7 @@ Purpose: Generate time series data for costly or time intensive experiments to l
 **What do they want to do?** Evaluate whether GANs can be used to augment time series data. (modeling data? Fitting data?)  
 What needs and desires do they want for the tool? Simple, fast tool that works by inputting incomplete data. Minimal data required for augmentation.  
 
-**What is their skill level?** Able to run and understand Python code and use GANs. Can operate with git repositories and Jupyter Notebook.
+**What is their skill level?** Able to run and understand Pytorch code and use GANs. Can operate with git repositories and Jupyter Notebook.
 
 **User story:** Data Scientist Tom wants to input some incomplete data into this tool to generate a complete dataset for his manager. He would like to be able to upload the data, input it into a generative model to create a complete dataset, and check whether the generated data is 'accurate'.
 
@@ -60,7 +58,7 @@ UI: user interface – website: Streamlit type web app (Python)
 * Visualization of generated data
 * Button to download generated data
 
-Input: Raw csv file/txt file
+Input: Raw csv file
 
 Data pipeline: Input data / data fed in real time etc (extract transform load, ETL)
 * Reading input data into pandas dataframe
