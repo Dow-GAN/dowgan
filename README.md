@@ -2,7 +2,7 @@
 
 # Exploring Generative Adversarial Networks for Data Augmentation
 
-This project uses generative adversarial networks for data generation for time-series data.
+This project uses generative adversarial networks for data generation for time-series data. A Gantt chart of the project can be found here: [Dow GAN Gantt Chart](https://docs.google.com/spreadsheets/d/1TDkpIP71Qa-njRVNn1pCFSOW9tKn3kIfl4yciAdwVgk/edit?usp=sharing)
 
 ## Description
 
