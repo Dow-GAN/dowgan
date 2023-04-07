@@ -10,27 +10,18 @@ User input: Time series data (incomplete, fewer points, experimentally derived d
 User receives: Large time series data set (augmented data)
 >User will receive the same time series data with original data points interpolated with synthetically generated data (x,y data), an evaluation metric to determine whether the augmented data is accurate, a visualization of the data pre-augmentation and post-augmentation, and a user interface option to download the augmented data.
 
-Purpose: Generate data for processes that are very costly to collect experimentally 
+Purpose: Generate data for processes that are very costly to collect experimentally. Generate artifical data for cross-company collaboration.
 
-### Use Case 2: Using GAN model with new (untrained) data  
-User input: New dataset with different dependency on time  
->User will upload/input time series data (x,y data) that is different from the original training data sets (such as data with a different time dependency, ex: original development data is concentration vs. time and new (untrained data) is temperature vs. time)  
+### Use Case 2: Using GAN model with new multi-feature data  
+User input: New dataset with multiple independent features  
+>User will upload/input time series data (x,y data) that is different from the original training data sets and has multiple features with different time dependencies.
 
 User receives: New model for time series data for different part of plant/component
 >User will receive an updated model for the new time series data with clear indications of where in the parameters the model have been changed or updated evaluation metric to indicate how well the current model is for fitting the new (untrained) data.
 
 Purpose: Develop a new GAN model from one that already works with time series data without having to start from scratch.
 
-### Use Case 3: Using GAN model to determine optimal GAN architecture  
-User input: Number of Neural Network layers and its parameters
->User can modify or create different GAN architecture and compare the performance.
-
-User receives: Gan model with best fit architecture for the specific time series data format.
->User find optimal GAN architecture and use it to augment data, generate data, etc.
-
-Purpose: Choose optimal neural network for generator/discriminator performance for different data types.
-
-### Use Case 4: Using GAN model to extrapolate data beyond given time range   
+### Use Case 3: Using GAN model to extrapolate data beyond given time range   
 User input: Time series data until t = x seconds
 >User will upload/input a smaller dataset of time series data.
 
@@ -52,11 +43,6 @@ What needs and desires do they want for the tool? Simple, fast tool that works b
 **User story:** Data Scientist Alice has some time series data that was taken over 1 hour. She is curious what the data may look like after 6 hours and is hoping a GAN model will help her predict that. With this prediction, she can report back whether it would be worth an engineer’s time and resources to continue data collection past 1 hour.
 
 ## Components    
-UI: user interface – website: Streamlit type web app (Python)
-* Place to upload csv files
-* Visualization of original data
-* Visualization of generated data
-* Button to download generated data
 
 Input: Raw csv file
 
@@ -79,3 +65,9 @@ Output: Component that spits out new data into a file
 * Output is a csv file
 * Output includes a figure with the experimental + synthetic data vs. time
 * Output includes some kind of MSE/R^2 type evaluator
+
+(Optional) UI: user interface – website: Streamlit type web app (Python)
+* Place to upload csv files
+* Visualization of original data
+* Visualization of generated data
+* Button to download generated data
