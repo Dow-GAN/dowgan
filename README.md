@@ -26,7 +26,7 @@ conda env create -f environment_mac.yml
 conda env create -f environment_windows.yml
 ```
 * To activate environment: `conda activate dowgan`
-* To deactivate environment: `conda deactivate dowgan`
+* To deactivate environment: `conda deactivate`
 * To see the list of all conda environments: `conda info --envs`
 * To update the environment: 
     * Make any changes required to environment.yml file
