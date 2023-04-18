@@ -17,3 +17,5 @@ dependencies:
   - scipy=1.9.1
   - joblib=1.1.0
   - threadpoolctl=2.2.0
+  - tensorflow = 2.11.0
+  - keras = 2.11.0
