@@ -8,6 +8,7 @@ import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 
 from sklearn.preprocessing import MinMaxScaler
+
 def split_target_condition(data, condition: str):
     '''split given dataframe into a target dataframe
         and condition dataframe
@@ -25,7 +26,8 @@ def split_target_condition(data, condition: str):
 def minmax_scaler(target_data,condition_data, min: float, max: float):
     '''Scales data and transforms target and condition data to tensors
         input: target data, condition data, min for scaling, max for scaling
-        output: a tensor of the target data (scaled) and tensor of conditions data (unscaled)'''
+        output: a tensor of the target data (scaled), tensor of conditions data (unscaled), 
+        and scaler for later processing of generated data'''
     scaler = MinMaxScaler(feature_range=(min,max))
 
     # fit & transform scaler data
@@ -41,7 +43,7 @@ def minmax_scaler(target_data,condition_data, min: float, max: float):
     print(f"shape of target (tensor): {target_tensor.shape}")
     print(f"shape of condition (tensor): {conditions_tensor.shape}")
 
-    return target_tensor,conditions_tensor
+    return target_tensor,conditions_tensor, scaler
 
 def data_batch(target_tensor,conditions_tensor,n_datapoints: int, batch_size:int):
     '''batching data of conditions and target tensors
