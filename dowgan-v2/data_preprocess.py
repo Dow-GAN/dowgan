@@ -26,8 +26,7 @@ def split_target_condition(data, condition: str):
 def minmax_scaler(target_data,condition_data, min: float, max: float):
     '''Scales data and transforms target and condition data to tensors
         input: target data, condition data, min for scaling, max for scaling
-        output: a tensor of the target data (scaled), tensor of conditions data (unscaled), 
-        and scaler for later processing of generated data'''
+        output: a tensor of the target data (scaled) and tensor of conditions data (unscaled)'''
     scaler = MinMaxScaler(feature_range=(min,max))
 
     # fit & transform scaler data
@@ -39,11 +38,7 @@ def minmax_scaler(target_data,condition_data, min: float, max: float):
     target_tensor = torch.tensor(target_data_scaled.values, dtype=torch.float32)
     conditions_tensor = torch.tensor(condition_data, dtype=torch.float32).unsqueeze(dim=1)
     
-    print(f"data is scaled and converted to tensors!\nready for batching and dataloader")
-    print(f"shape of target (tensor): {target_tensor.shape}")
-    print(f"shape of condition (tensor): {conditions_tensor.shape}")
-
-    return target_tensor,conditions_tensor, scaler
+    return conditions_tensor, target_tensor
 
 def data_batch(target_tensor,conditions_tensor,n_datapoints: int, batch_size:int):
     '''batching data of conditions and target tensors
@@ -88,6 +83,44 @@ def data_batch(target_tensor,conditions_tensor,n_datapoints: int, batch_size:int
             target = self.target[idx]
             return target, condition
 
+    #Inputting data into ImpuritiesDataset class
+    train_data = ImpuritiesDataset(target=target_tensor_list,
+                               conditions=conditions_tensor_list)
+    
+    train_dataloader = DataLoader(
+    dataset=train_data,
+    batch_size=batch_size,
+    shuffle=False,
+    )
+
+    print(f"dataloader: {train_dataloader}")
+    print(f"length of train_dataloader: {len(train_dataloader)} batches of {batch_size} (batch_size) examples")
+    print(f"number of total examples: {len(train_data)} \neach example containing... \nTARGET shape (number of timepoints): {train_data[0][0].shape} \nCONDITION shape (class 1 or 2): {train_data[0][1].shape}")
+
+    return train_dataloader
+
+def data_batch_clean(target_tensor,conditions_tensor,n_datapoints: int, batch_size:int):
+    '''ASSUMES NO NAN VALUES. Batching data of conditions and target tensors
+        put into dataloader'''
+    n_samples = len(target_tensor)//n_datapoints
+    
+    target_tensor_list = []
+    conditions_tensor_list = []
+
+    #Iterating through all of the data and dividing it up
+    for i in np.arange(0, n_samples, 1):
+        
+        #Taking a batch of the target data
+        temp_target_batch = torch.split(target_tensor, n_datapoints, dim=0)[i]
+        target_tensor_list.append(temp_target_batch)
+
+        #Taking the corresponding batch of conditions
+        temp_condition_batch = torch.split(conditions_tensor, n_datapoints, dim=0)[i]
+        conditions_tensor_list.append(temp_condition_batch)
+
+    print(f'length of data: {data.shape[0]}')
+    print(f'We have {len(target_tensor_list)} samples with {n_datapoints} datapoints in each.')
+
     #Inputting data into AirQualityDataset class
     train_data = ImpuritiesDataset(target=target_tensor_list,
                                conditions=conditions_tensor_list)
@@ -103,3 +136,13 @@ def data_batch(target_tensor,conditions_tensor,n_datapoints: int, batch_size:int
     print(f"number of total examples: {len(train_data)} \neach example containing... \nTARGET shape (number of timepoints): {train_data[0][0].shape} \nCONDITION shape (class 1 or 2): {train_data[0][1].shape}")
 
     return train_dataloader
+
+def read_csv_drop(file_path,columns_to_drop):
+    '''reads time-series data, drops the date column and any rows with NaNs'''
+    df = pd.read_csv(file_path, sep=",")
+    df = df.drop(columns=columns_to_drop)
+    print(f'dataframe shape after dropping time column: {df.shape}')
+    df = df.dropna()
+    print(f'dataframe shape after dropping nan rows: {df.shape}')
+    
+    return df
