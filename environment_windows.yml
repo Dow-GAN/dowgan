@@ -19,3 +19,5 @@ dependencies:
   - threadpoolctl=2.2.0
   - tensorflow = 2.11.0
   - keras = 2.11.0
+  - tqdm = 4.65.0
+  
