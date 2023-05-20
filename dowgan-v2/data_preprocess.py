@@ -9,6 +9,18 @@ from torch.utils.data import Dataset, DataLoader
 
 from sklearn.preprocessing import MinMaxScaler
 
+# making a custom dataset class
+class ImpuritiesDataset(Dataset):
+    def __init__(self, target, conditions):
+        self.target = target
+        self.conditions = conditions
+    def __len__(self):
+        return len(self.conditions)
+    def __getitem__(self, idx):
+        condition = self.conditions[idx]
+        target = self.target[idx]
+        return target, condition
+        
 def split_target_condition(data, condition: str):
     '''split given dataframe into a target dataframe
         and condition dataframe
@@ -71,18 +83,6 @@ def data_batch(target_tensor,conditions_tensor,n_datapoints: int, batch_size:int
     print(f'We have {len(target_tensor_list)} samples with {n_datapoints} datapoints in each.')
     print(f'There are {len(invalid_batch_indexes)} invalid batches.\n')
 
-    # making a custom dataset class
-    class ImpuritiesDataset(Dataset):
-        def __init__(self, target, conditions):
-            self.target = target
-            self.conditions = conditions
-        def __len__(self):
-            return len(self.conditions)
-        def __getitem__(self, idx):
-            condition = self.conditions[idx]
-            target = self.target[idx]
-            return target, condition
-
     #Inputting data into ImpuritiesDataset class
     train_data = ImpuritiesDataset(target=target_tensor_list,
                                conditions=conditions_tensor_list)
@@ -118,10 +118,10 @@ def data_batch_clean(target_tensor,conditions_tensor,n_datapoints: int, batch_si
         temp_condition_batch = torch.split(conditions_tensor, n_datapoints, dim=0)[i]
         conditions_tensor_list.append(temp_condition_batch)
 
-    print(f'length of data: {data.shape[0]}')
+    print(f'length of data: {target_tensor.shape[0]}')
     print(f'We have {len(target_tensor_list)} samples with {n_datapoints} datapoints in each.')
 
-    #Inputting data into AirQualityDataset class
+    #Inputting data into ImpuritiesDataset class
     train_data = ImpuritiesDataset(target=target_tensor_list,
                                conditions=conditions_tensor_list)
     
@@ -137,8 +137,9 @@ def data_batch_clean(target_tensor,conditions_tensor,n_datapoints: int, batch_si
 
     return train_dataloader
 
-def read_csv_drop(file_path,columns_to_drop):
-    '''reads time-series data, drops the date column and any rows with NaNs'''
+def read_csv_drop(file_path: str,columns_to_drop: []):
+    '''reads time-series data, drops the date column and any rows with NaNs.
+        input: file path (str)'''
     df = pd.read_csv(file_path, sep=",")
     df = df.drop(columns=columns_to_drop)
     print(f'dataframe shape after dropping time column: {df.shape}')
