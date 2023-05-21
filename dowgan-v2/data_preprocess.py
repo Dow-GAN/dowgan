@@ -50,7 +50,7 @@ def minmax_scaler(target_data,condition_data, min: float, max: float):
     target_tensor = torch.tensor(target_data_scaled.values, dtype=torch.float32)
     conditions_tensor = torch.tensor(condition_data, dtype=torch.float32).unsqueeze(dim=1)
     
-    return conditions_tensor, target_tensor
+    return conditions_tensor, target_tensor, scaler
 
 def data_batch(target_tensor,conditions_tensor,n_datapoints: int, batch_size:int):
     '''batching data of conditions and target tensors
