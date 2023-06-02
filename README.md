@@ -8,8 +8,6 @@ This project uses generative adversarial networks for data generation for time-s
 
 Collecting large amounts and high resolution of data in industrial fields is often costly and time intensive. General adversarial networks (GANs) are known for augmenting images. We are exploring the potential for GANs to augment time-series data. 
 
-This currently only works on the `hungary_chickenpox.csv` data
-
 This project is a collaboration between the University of Washington and Dow Chemical.
 
 ## Getting Started
@@ -33,16 +31,10 @@ conda env create -f environment_windows.yml
     * Then run: `conda env update --file environment_mac/windows.yml --prune`
     * Then make sure to `conda activate dowgan` again to successfully update environment.
 
-### Executing program
+### What's included in this repo
 
-* First follow the steps above in Installing & Dependencies
-* Once the dowgan environment is activated, navigate into the scripts folder `cd scripts`
-* To run GAN script called 'dataloder.py' on the default 'Hungary Chicken Pox' Data, execute at the command line:
-```
-python3 dataloader.py
-```
-* Modify parameters and preferences for GAN model by editing `dataloader.py` script file parameters 
-
+* Notebook folder contains work on GANs, CGANs, experimental GAN structures, and transformer models.
+* Utility functions for data visualization and data preparation for importing into dataloaders.
 
 ## Help
 
@@ -61,6 +53,8 @@ Arty Timchenko - [@atimch](https://github.com/atimch)
 
 * 1.0
     * Initial Release - Winter Quarter 2023 CHEM E 545/546
+* 2.0
+    * CGAN and Transformer Update – Spring Quarter 2023 CHEM E 547
 
 ## License
 
