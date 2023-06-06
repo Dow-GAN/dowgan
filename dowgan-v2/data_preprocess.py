@@ -1,12 +1,5 @@
 import numpy as np
 import pandas as pd
-
-import torch
-import torch.nn as nn
-from torch import optim
-import torch.nn.functional as F
-from torch.utils.data import Dataset, DataLoader
-
 from sklearn.preprocessing import MinMaxScaler
 
 # making a custom dataset class
