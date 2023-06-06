@@ -8,8 +8,6 @@ This project uses generative adversarial networks for data generation for time-s
 
 Collecting large amounts and high resolution of data in industrial fields is often costly and time intensive. General adversarial networks (GANs) are known for augmenting images. We are exploring the potential for GANs to augment time-series data. 
 
-This currently only works on the `hungary_chickenpox.csv` data
-
 This project is a collaboration between the University of Washington and Dow Chemical.
 
 ## Getting Started
@@ -33,16 +31,15 @@ conda env create -f environment_windows.yml
     * Then run: `conda env update --file environment_mac/windows.yml --prune`
     * Then make sure to `conda activate dowgan` again to successfully update environment.
 
-### Executing program
+### What's included in this repo
 
-* First follow the steps above in Installing & Dependencies
-* Once the dowgan environment is activated, navigate into the scripts folder `cd scripts`
-* To run GAN script called 'dataloder.py' on the default 'Hungary Chicken Pox' Data, execute at the command line:
-```
-python3 dataloader.py
-```
-* Modify parameters and preferences for GAN model by editing `dataloader.py` script file parameters 
-
+* Notebook folder contains work on GANs, CGANs, experimental GAN structures, and transformer models.
+    * Notebooks in the main "notebooks" folder contains notebooks of functioning GAN iterations.
+    * Experimental / ems-experiments / en-cgan / en-timegan folders contain notebooks of experiments in development using GANs.
+* Dowgan contains py modules for original testGAN verion 1.0 release from Winter 2023
+* Dowgan-v2 contains py modules for newer cGAN version 2.0 release from Spring 2023
+* Utility functions within Dowgan / Dowgan-v2 are for data visualization and data preparation for importing into dataloaders.
+* Scripts contains `dataloader.py` for running `dowgan`
 
 ## Help
 
@@ -61,6 +58,8 @@ Arty Timchenko - [@atimch](https://github.com/atimch)
 
 * 1.0
     * Initial Release - Winter Quarter 2023 CHEM E 545/546
+* 2.0
+    * CGAN (dowgan-v2) and Transformer Update – Spring Quarter 2023 CHEM E 547
 
 ## License
 
@@ -68,6 +67,5 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
+* David Beck and Evan Komp 
 * [DomPizzie](https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)
-
