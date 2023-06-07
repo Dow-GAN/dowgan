@@ -10,6 +10,7 @@ from matplotlib import pyplot as plt
 import torch
 import getpass
 import sys
+sys.path.insert(0, f'/home/{getpass.getuser()}/dowgan/dowgan')
 import util
 
 class TestPlotSequences(unittest.TestCase):
@@ -147,7 +148,155 @@ class TestGenerateSequences(unittest.TestCase):
         self.generator.assert_called()
         self.recovery_network.assert_called()
 
-        
+df = pd.DataFrame(np.random.randint(0,100,size=(10, 3)), columns=list('ABC'))
+df_empty = pd.DataFrame()
+class TestDetermineComponents(unittest.TestCase):
+    """
+    Unit test for the function determine_components
+    """
+    def test_smoke(self):
+        """
+        Simple smoke test to make sure function runs.
+        """
+        util.determine_components(df)
+    def test_value(self):
+        """
+        Test for value error, when dataframe is empty
+        """
+        with self.assertRaises(ValueError):
+            util.determine_components(df_empty)
+    def test_name(self):
+        """
+        Test for name error, when dataframe isn't defined
+        """
+        with self.assertRaises(NameError):
+            util.determine_components(test)
+
+
+losses = [0.7081860899925232, 0.7069265842437744, 0.6873602271080017]
+ls = {'a':[1, 2, 3]}
+class TestPlotLosses(unittest.TestCase):
+    """
+    Unit test for the function plot_losses
+    """
+    def test_smoke(self):
+        """
+        Simple smoke test to make sure function runs.
+        """
+        util.plot_losses(losses)
+    def test_type(self):
+        """
+        Test for type error, when wrong type of data
+        """
+        with self.assertRaises(TypeError):
+            util.plot_losses(ls)
+    def test_name(self):
+        """
+        Test for name error, when data isn't defined
+        """
+        with self.assertRaises(NameError):
+            util.plot_losses(test)
+            
+gen_losses = torch.tensor(losses)
+dis_losses = torch.tensor(losses)
+rec_losses = torch.tensor(losses)
+class TestPlotMultipleLosses(unittest.TestCase):
+    """
+    Unit test for the function plot_multiple_losses
+    """
+    def test_smoke(self):
+        """
+        Simple smoke test to make sure function runs.
+        """
+        util.plot_multiple_losses([gen_losses,dis_losses,rec_losses],
+                                  ['Generator Loss', 'Discriminator Loss', 'Recovery Loss'])
+    def test_attribute(self):
+        """
+        Test for attribute error, when data isn't a tensor doens't have attribute 'detach'
+        """
+        with self.assertRaises(AttributeError):
+            util.plot_multiple_losses([losses,dis_losses,rec_losses],
+                                      ['Generator Loss', 'Discriminator Loss', 'Recovery Loss'])
+    def test_name(self):
+        """
+        Test for name error, when data isn't defined
+        """
+        with self.assertRaises(NameError):
+            util.plot_multiple_losses([test,dis_losses,rec_losses],
+                                      ['Generator Loss', 'Discriminator Loss', 'Recovery Loss'])
+
+array1 = np.random.rand(1,100)
+array2 = np.random.rand(1,100)
+array3 = np.random.rand(1,20)
+name = ['x1', 'x2']
+class TestPlotFeatures(unittest.TestCase):
+    """
+    Unit test for the function plot_features
+    """
+    def test_smoke(self):
+        """
+        Simple smoke test to make sure function runs.
+        """
+        util.plot_features(array1, array2, name, 2)
+    def test_index(self):
+        """
+        Test for index error, when list index out of range
+        """
+        with self.assertRaises(IndexError):
+            util.plot_features(array1, array2, name, 3)
+    def test_name(self):
+        """
+        Test for name error, when data isn't defined
+        """
+        with self.assertRaises(NameError):
+            util.plot_features(test, array2, name, 2)
+
+array4 = np.random.rand(5,100)
+array5 = np.random.rand(5,100)
+class TestPlotPca(unittest.TestCase):
+    """
+    Unit test for the function plot_pca
+    """
+    def test_smoke(self):
+        """
+        Simple smoke test to make sure function runs.
+        """
+        util.plot_pca(array4, array5)
+    def test_value(self):
+        """
+        Test for value error, when number of components doesn't fulfill solver
+        """
+        with self.assertRaises(ValueError):
+            util.plot_pca(array1, array5)
+    def test_name(self):
+        """
+        Test for name error, when data isn't defined
+        """
+        with self.assertRaises(NameError):
+            util.plot_pca(test, array5)
+            
+class TestPlotTsne(unittest.TestCase):
+    """
+    Unit test for the function plot_tsne
+    """
+    def test_smoke(self):
+        """
+        Simple smoke test to make sure function runs.
+        """
+        util.plot_tsne(array1, array2)
+    def test_value(self):
+        """
+        Test for value error, when input array dimensions doesn't match
+        """
+        with self.assertRaises(ValueError):
+            util.plot_tsne(array1, array3)
+    def test_name(self):
+        """
+        Test for name error, when data isn't defined
+        """
+        with self.assertRaises(NameError):
+            util.plot_tsne(test, array3)
+            
 if __name__ == '__main__':
     unittest.main()
     
