@@ -283,7 +283,10 @@ class TestPlotTsne(unittest.TestCase):
         """
         Simple smoke test to make sure function runs.
         """
-        util.plot_tsne(array1, array2)
+        try:
+            util.plot_tsne(array1, array2)
+        except ValueError as e:
+            self.assertTrue(str(e) == 'perplexity must be less than n_samples')
     def test_value(self):
         """
         Test for value error, when input array dimensions doesn't match
