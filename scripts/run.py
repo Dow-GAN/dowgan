@@ -62,10 +62,12 @@ file_path = os.path.join('../',folder_name, file_name)
 data = pd.read_csv(file_path)
 data = data.drop(columns='Primary ID')
 data = data.dropna()
-
+print("Successfully loaded data")
 
 # Run PCA to determine the lower dimensionality of the data
 components = util.determine_components(data)
+print(f"Ran PCA, number of primary components: {components}")
+
 # Group the data by the "Class" column
 grouped_data = data.groupby('Class')
 
@@ -133,9 +135,11 @@ dataset = EncoderGAN.TimeSeriesDataset(train_df, seq_length)
 dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
 embedding_network = EncoderGAN.EmbeddingNetwork(input_dim, hidden_dim, encoding_dim)
 recovery_network = EncoderGAN.RecoveryNetwork(encoding_dim, hidden_dim, input_dim)
-# Train the Model 
+# Train the Model
+print("Begin training Embedding and Recovery Models")
 losses = EncoderGAN.train_autoencoder(embedding_network, recovery_network, dataloader, input_dim, num_epochs, lr)
 # Plot Loss
+print("Plotting loss for Embedding and Recovery Model")
 util.plot_losses(losses)
 
 # Instantiate the models
@@ -143,11 +147,12 @@ generator = EncoderGAN.ConditionalGenerator(noise_dim, cond_dim, hidden_dim, out
 discriminator = EncoderGAN.ConditionalDiscriminator(input_channels, hidden_channels, output_dim)
 discriminator_optimizer = torch.optim.Adam(discriminator.parameters(), lr=lr)
 generator_optimizer = torch.optim.Adam(generator.parameters(), lr=lr)
-
+print("Begin training Generator and Discriminator Models")
 gen_losses, dis_losses, rec_losses = EncoderGAN.train_GAN(dataloader, embedding_network,
                                                generator, discriminator, recovery_network, generator_optimizer,
                                                discriminator_optimizer, num_epochs_gan, print_every=10)
 # Plot Loss Curves
+print("Plotting loss for Generator and Discriminator Models")
 util.plot_multiple_losses([gen_losses,dis_losses,rec_losses], ['Generator Loss', 'Discriminator Loss', 'Recovery Loss'])
 
 # Test Data Generation
@@ -166,11 +171,15 @@ test_data_tensor = torch.from_numpy(test_data_gen.values).unsqueeze(0).float()
 encoded = embedding_network(test_data_tensor)
 condition = encoded[:,0,:]
 # generate new data and inverse transform the values
+print("Generating data from single input condition")
 recovered_sequences = util.generate_timeseries_sequences(generator, recovery_network, embedding_network, test_data_gen, num_samples, seq_length)
 recovered_sequences = scaler2.inverse_transform(recovered_sequences)
 test_data_inverse = scaler2.inverse_transform(test_data_gen)
 recovered_sequences.shape, test_data_inverse.shape
-
+print("Saving generated data as 'generated_data'")
+file_name = 'generated_data.csv'
+util.array_to_dataframe(recovered_sequences, column_names, file_name)
+print("Plot PCA and tSNE")
 util.plot_pca(test_data_inverse, recovered_sequences)
 util.plot_tsne(test_data_inverse, recovered_sequences)
 
@@ -184,11 +193,14 @@ num_samples = 1
 seq_length = 20
 # Specify test data
 test_data_aug = test_df.iloc[0:1400]
-
+print("Generating data from recuring input conditions")
 # generate new data and inverse transform the values
 augmented_data = util.augment_timeseries_sequences(generator, recovery_network, embedding_network, test_data_aug, num_samples, seq_length)
 augmented_data = scaler2.inverse_transform(augmented_data)
 test_data_inv = scaler2.inverse_transform(test_data_aug)
-
+print("Saving generated data as 'augmented_data'")
+file_name = 'augmented_data.csv'
+util.array_to_dataframe(augmented_data, column_names, file_name)
+print("Plot PCA and tSNE")
 util.plot_pca(test_data_inv, augmented_data)
 util.plot_tsne(test_data_inv, augmented_data)
