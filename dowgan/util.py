@@ -399,3 +399,27 @@ def create_train_test(df, test_size, columns):
     test_df = pd.DataFrame(test_df, columns = columns)
     print(f" Train Shape: {train_df.shape}, Test Shape: {test_df.shape}")
     return train_df, test_df
+
+def array_to_dataframe(array, column_names, file_name):
+    """
+    Converts a numpy array into a pandas DataFrame and saves it to a CSV file.
+    
+    This function will raise a ValueError if the number of columns in the array
+    does not match the number of provided column names.
+
+    Args:
+        array (numpy.ndarray): The numpy array to be converted into a DataFrame.
+            The number of columns in the array should match the number of column names.
+        column_names (list): A list of strings representing the column names for the DataFrame.
+        file_name (str): The path and name of the CSV file to be written.
+            This should include the extension '.csv'. If a directory path is included,
+            the directories should exist.
+
+    Raises:
+        ValueError: If the number of columns in the array does not match the number of column names.
+    """
+    if array.shape[1] != len(column_names):
+        raise ValueError("The number of columns in the array should match the number of column names")
+
+    df = pd.DataFrame(array, columns=column_names)
+    df.to_csv(file_name, index=False)
