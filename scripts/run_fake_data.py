@@ -125,8 +125,8 @@ cond_dim = output_dim
 seq_length = 20
 input_channels = seq_length + 2
 hidden_channels = 64
-num_epochs = 1 # Embedder Recovery
-num_epochs_gan = 1 # Generator Discriminator
+num_epochs = 500 # Embedder Recovery
+num_epochs_gan = 200 # Generator Discriminator
 lr = 0.0001  
 batch_size = 32
 
