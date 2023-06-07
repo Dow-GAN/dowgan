@@ -36,10 +36,11 @@ conda env create -f environment_windows.yml
 * Notebook folder contains work on GANs, CGANs, experimental GAN structures, and transformer models.
     * Notebooks in the main "notebooks" folder contains notebooks of functioning GAN iterations.
     * Experimental / ems-experiments / en-cgan / en-timegan folders contain notebooks of experiments in development using GANs.
-* Dowgan contains py modules for original testGAN verion 1.0 release from Winter 2023
+* Dowgan contains py modules for original testGAN verion 1.0 release from Winter 2023 and Encoder Modelfrom Spring 2023
 * Dowgan-v2 contains py modules for newer cGAN version 2.0 release from Spring 2023
 * Utility functions within Dowgan / Dowgan-v2 are for data visualization and data preparation for importing into dataloaders.
-* Scripts contains `dataloader.py` for running `dowgan`
+* Scripts contains `dataloader.py` for running `dowgan` and 'run.py' for running Encoder model
+* Notebook for Encoder model available in notebooks
 
 ## Help
 
@@ -59,7 +60,7 @@ Arty Timchenko - [@atimch](https://github.com/atimch)
 * 1.0
     * Initial Release - Winter Quarter 2023 CHEM E 545/546
 * 2.0
-    * CGAN (dowgan-v2) and Transformer Update – Spring Quarter 2023 CHEM E 547
+    * CGAN (dowgan-v2) and Encoder Update – Spring Quarter 2023 CHEM E 547
 
 ## License
 
